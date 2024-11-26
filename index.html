@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uploadcare com GitHub Pages</title>
+  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+  <link rel="stylesheet" href="https://ucarecdn.com/libs/widget/3.x/uploadcare.min.css" />
+</head>
+<body>
+  <h1>Upload de Imagens</h1>
+  <p>Escolha as fotos para upload:</p>
+  <input type="file" role="uploadcare-uploader" />
+  <br><br>
+  <button id="submitBtn">Enviar Fotos</button>
+
+  <script>
+    // Initialize Uploadcare widget
+    const widget = uploadcare.Widget('[role=uploadcare-uploader]');
+
+    document.getElementById('submitBtn').addEventListener('click', function() {
+      widget.files(function(files) {
+        if (files.length > 0) {
+          files.forEach(file => {
+            console.log('Arquivo enviado: ', file);
+            alert('Arquivo enviado com sucesso!');
+          });
+        } else {
+          alert('Por favor, selecione uma imagem para enviar.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
